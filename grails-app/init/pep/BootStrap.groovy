@@ -6,24 +6,30 @@ class BootStrap {
 
     def init = { servletContext ->
 
+        Developer dierk  = save Developer.findOrCreateWhere(firstName: "Dierk",  lastName: "König")
+        Developer dieter = save Developer.findOrCreateWhere(firstName: "Dieter", lastName: "Holz")
+
+        Project webcl = save Project.findOrCreateWhere(name: "Web Clients")
+        Project uieng = save Project.findOrCreateWhere(name: "UI Engineering")
+
         LocalDate weekBegin = LocalDate.of(2018,12,31)
 
         (1..52).each { weekNr ->
-            save Week.findOrCreateWhere(year: 2019, calendarWeek: weekNr, beginDate: toDate(weekBegin), endDate: toDate(weekBegin.plusDays(6)))
+            Week week = save Week.findOrCreateWhere(
+                year:           2019,
+                calendarWeek:   weekNr,
+                beginDate:      toDate(weekBegin),
+                endDate:        toDate(weekBegin.plusDays(6)))
             weekBegin = weekBegin.plusDays(7)
+
+            save Need.findOrCreateWhere(project: webcl, week: week , fte_pct:  50)
+            save Need.findOrCreateWhere(project: uieng, week: week , fte_pct: 150)
+
+            save Availability.findOrCreateWhere(developer: dierk  , week: week , fte_pct: 80)
+            save Availability.findOrCreateWhere(developer: dieter , week: week , fte_pct: 100)
+
+            save Assignment.findOrCreateWhere(developer: dieter , project: uieng, week: week , fte_pct: 100)
         }
-
-        Developer dierk  = Developer.findOrCreateWhere(firstName: "Dierk",  lastName: "König")
-        Developer dieter = Developer.findOrCreateWhere(firstName: "Dieter", lastName: "Holz")
-        save dierk
-        save dieter
-
-        Project webcl = Project.findOrCreateWhere(name: "Web Clients")
-        Project uieng = Project.findOrCreateWhere(name: "UI Engineering")
-        save webcl
-        save uieng
-
-
 
 
     }
@@ -35,6 +41,7 @@ class BootStrap {
     private static <Domain> Domain save(Domain domain) {
         domain.save(failOnError: true)
     }
+
     def destroy = {
     }
 }

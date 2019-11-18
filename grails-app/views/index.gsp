@@ -56,6 +56,14 @@
                         <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
                     </li>
                 </g:each>
+
+
+                <li class="controller">
+                    <g:link controller="example" action="dev">rest CRUD example</g:link>
+                </li>
+                <li class="controller">
+                    <g:link controller="example" action="index">web socket example</g:link>
+                </li>
             </ul>
         </div>
     </section>

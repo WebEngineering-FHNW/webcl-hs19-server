@@ -1,5 +1,8 @@
 package pep
 
+import grails.rest.Resource
+
+@Resource(uri='/developers', formats=['json'])
 class Developer {
 
     String firstName
