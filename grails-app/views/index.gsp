@@ -62,6 +62,9 @@
                     <g:link controller="example" action="dev">rest CRUD example</g:link>
                 </li>
                 <li class="controller">
+                    <g:link controller="example" action="weekData" params="[fromWeekNr:1, toWeekNr:4]">rest week data</g:link>
+                </li>
+                <li class="controller">
                     <g:link controller="example" action="index">web socket example</g:link>
                 </li>
             </ul>
