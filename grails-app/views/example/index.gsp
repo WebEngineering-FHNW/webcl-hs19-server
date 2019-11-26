@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <asset:javascript src="spring-websocket"/>
+    <asset:javascript src="spring-websocket"/>
+    <title>WS Example</title>
 </head>
 
 <body>
+
+<p> Example page to show the client-side use of Web Sockets from JavaScript.</p>
+<p> Depends on spring-websocket for the sake of sending text over the binary protocol more easily.</p>
+
 <button id="helloButton">hello</button>
 
 <div id="out"></div>
