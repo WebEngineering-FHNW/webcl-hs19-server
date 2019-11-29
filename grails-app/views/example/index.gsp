@@ -30,9 +30,7 @@
         });
     });
 
-    document.querySelector("#helloButton").onclick = evt =>
-        client.send(endpoint, JSON.stringify("world"))
-    ;
+    document.querySelector("#helloButton").onclick = evt => client.send(endpoint, JSON.stringify("world"));
 
 </script>
 </body>
