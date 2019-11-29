@@ -6,8 +6,8 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        Developer dierk  = save Developer.findOrCreateWhere(firstName: "Dierk",  lastName: "König")
-        Developer dieter = save Developer.findOrCreateWhere(firstName: "Dieter", lastName: "Holz")
+        Developer dierk  = save Developer.findOrCreateWhere(firstName: "Dierk",  lastName: "König", imageUrl: "img2.jpg")
+        Developer dieter = save Developer.findOrCreateWhere(firstName: "Dieter", lastName: "Holz",  imageUrl: "img3.jpg")
 
         Project webcl = save Project.findOrCreateWhere(name: "Web Clients")
         Project uieng = save Project.findOrCreateWhere(name: "UI Engineering")

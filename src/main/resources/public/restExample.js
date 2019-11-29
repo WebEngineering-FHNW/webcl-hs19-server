@@ -15,7 +15,7 @@ const exampleOperations = (baseUrl, out) => {
     client(baseUrl)
         .then(json => writeln("All devs:", JSON.stringify(json)));
 
-    client(baseUrl + '/1', 'PUT', {"firstName": "Dierk", "imageUrl": null, "lastName": "Koenig" + counter})
+    client(baseUrl + '/1', 'PUT', {"lastName": "Koenig" + counter})
         .then(json => writeln("Modify dev 1:", JSON.stringify(json)));
 
     client(baseUrl)

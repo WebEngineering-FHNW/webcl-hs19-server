@@ -14,6 +14,6 @@ class Developer {
     static constraints = {
         firstName nullable: true
         lastName  nullable: true
-        imageUrl  nullable: true, url: true
+        imageUrl  nullable: true
     }
 }
