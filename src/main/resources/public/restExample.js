@@ -1,5 +1,5 @@
 
-import { client } from "./restClient.js";
+import { client } from "./rest/restClient.js";
 
 export { exampleOperations }
 

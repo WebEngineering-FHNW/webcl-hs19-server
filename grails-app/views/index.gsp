@@ -68,7 +68,7 @@
                     <g:link controller="example" action="index">web socket example</g:link>
                 </li>
                 <li class="controller">
-                    <g:link uri="/static/PEP.html">PEP sketch</g:link>
+                    <g:link uri="/static/allTestsAsync.html">All Testss</g:link>
                 </li>
             </ul>
         </div>

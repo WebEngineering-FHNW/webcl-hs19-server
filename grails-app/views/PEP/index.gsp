@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <script src="/static/pepStarter.js" type="module"></script>
+  <script src="/static/pep/pepRemoteStarter.js" type="module"></script>
   <title>Personal Einsatz Planung</title>
   <style>
           body {
