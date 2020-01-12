@@ -12,10 +12,13 @@ const client   = window.webStompClient;
 
 const services = pepServices(URL, "/static/pep/img/");
 
-services.setBroadcastHandler(command => client.send(endpoint, JSON.stringify(command)));
+services.run ({
+    stompClient:      client,
+    channel:          channel,
+    broadcastHandler: command => client.send(endpoint, JSON.stringify(command)),
+    whenReady:        ()      => services.loadDevelopers( devs => start(services, appRootId, devs))
+});
 
-services.startListening(client, channel);
 
-services.loadDevelopers( devs => start(services, appRootId, devs) );
 
 

@@ -10,8 +10,30 @@ export { pepServices }
  */
 const pepServices = (URL, imagePath) => {
 
-    let broadcastHandler;
+    let _broadcastHandler;
     let assignmentHandler;
+
+    /**
+     * Uses parameter object pattern to deal with the many different options that
+     * various service factories might need.
+     */
+    const run = ({stompClient, channel, broadcastHandler, whenReady}) => {
+        _broadcastHandler = broadcastHandler;
+        console.log("start listening", channel, stompClient);
+        stompClient.connect({},  () => {
+            console.log("subscribing for channel", channel);
+            stompClient.subscribe(channel, payload =>  {
+                console.log("processing message: ",payload.body);
+
+                // take the payload and see whether we have to update any model
+                // for the moment we can assume that we only have to care about assignments
+                const assignment = JSON.parse(payload.body);
+                assignmentHandler && assignmentHandler(assignment);
+
+            });
+            whenReady();
+        });
+    };
 
     const loadDevelopers = withDevelopers =>
         client(URL)
@@ -24,33 +46,14 @@ const pepServices = (URL, imagePath) => {
 
     const setAssignmentHandler = newHandler => assignmentHandler = newHandler;
 
-    const startListening = (stompClient, channel) => {
-        console.log("start listening", channel, stompClient);
-        stompClient.connect({},  () => {
-            console.log("subscribing for channel", channel);
-            stompClient.subscribe(channel, payload =>  {
-                console.log("processing message: ",payload.body);
-
-                // take the payload and see whether we have to update any model
-                // for the moment we can assume that we only have to care about assignments
-                const assignment = JSON.parse(payload.body)
-                assignmentHandler && assignmentHandler(assignment);
-
-            });
-        });
-    };
-
-    const setBroadcastHandler = initialBroadcastHandler => broadcastHandler = initialBroadcastHandler;
-
     const broadcast = command => {
         console.log("broadcasting: ", command);
-        broadcastHandler(command);
+        _broadcastHandler(command);
     };
 
     return {
+        run,
         loadDevelopers,
-        startListening,
-        setBroadcastHandler,
         setAssignmentHandler,
         broadcast
     }

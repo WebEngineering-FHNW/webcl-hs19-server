@@ -16,16 +16,21 @@ const devs = [
  */
 const pepServices = () => {
 
+    let assignmentHandler;
+
     const loadDevelopers = withDevelopers => withDevelopers(devs);
 
-    const startListening = (stompClient, channel) =>
-        console.log( "local service cannot listen to websockets.");
-
-    const setBroadcastHandler = initialBroadcastHandler =>
-        console.log( "local service cannot set broadcast handler.");
+    const run = ({whenReady}) => whenReady();
 
     const broadcast = command =>
         console.log( "local service does not broadcast.");
 
-    return { loadDevelopers, startListening, setBroadcastHandler, broadcast }
+    const setAssignmentHandler = newHandler => assignmentHandler = newHandler;
+
+    return {
+        run,
+        loadDevelopers,
+        setAssignmentHandler,
+        broadcast
+    }
 };

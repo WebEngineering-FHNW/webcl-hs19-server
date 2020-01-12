@@ -15,7 +15,7 @@ import "../domainDoc.js"
     {{
     loadDevelopers: (function(onDevelopersReadyCallback): undefined),
     broadcast:      (function(*): void),
-    startListening: (function(*, *): void),
-    setBroadcastHandler: (function(*): void)
+    run:            (function(*): void),
+    setAssignmentHandler: (function(*): void)
     }} PepService
  * */
