@@ -37,8 +37,8 @@ const PepController = () => {
         {week:3, projId:1, fte:  0},
     ];
     const assignments = [
-        { week:0, devId:0, projId:0, amount: 70},
-        { week:0, devId:0, projId:1, amount: 30},
+        { id:0, version:0, week:0, devId:0, projId:0, amount: 70},
+        { id:1, version:0, week:0, devId:0, projId:1, amount: 30},
     ];
     const devs = [];
 

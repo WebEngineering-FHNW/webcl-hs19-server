@@ -12,15 +12,20 @@ const OccupationController = projController => {
     const innerList      = []; // local state, never exposed
     const occupations = ObservableList(innerList);
 
-    /** @param {Assignment} assignmentData */
+    /**
+     * @param {Assignment} assignmentData
+     * @return {number} the id that has been used to create the assignment
+     * */
     const addAssignment = assignmentData => {
         const occupation = Assignment();
-        const occupationId = id++;
-        occupation.id.getObs(VALUE)       .setValue(occupationId);
-        occupation.weekId.getObs(VALUE)   .setValue(assignmentData.week);
-        occupation.devId.getObs(VALUE)    .setValue(assignmentData.devId);
-        occupation.projId.getObs(VALUE)   .setValue(assignmentData.projId);
-        occupation.amountPct.getObs(VALUE).setValue(assignmentData.amount);
+        if (null != assignmentData.id ) {
+            id = Math.max(Number(assignmentData.id), id) // make sure we use a higher number than ever seen
+        }
+        const occupationId = id;
+        id++;
+
+        occupation.id.getObs(VALUE).setValue(occupationId);
+        updateValues(occupation, assignmentData);
 
         // setting value to 0 removes the assignment and notifies remove-listener
         occupation.amountPct.getObs(VALUE).onChange( newAmount => {
@@ -29,10 +34,10 @@ const OccupationController = projController => {
             }
         });
 
-        occupation.id.setQualifier(`Assignment.${occupationId}.id`);
-        occupation.weekId.setQualifier(`Assignment.${occupationId}.weekId`);
-        occupation.devId.setQualifier(`Assignment.${occupationId}.devId`);
-        occupation.projId.setQualifier(`Assignment.${occupationId}.projId`);
+        occupation.id   .setQualifier(`Assignment.${occupationId}.id`);
+        occupation.weekId   .setQualifier(`Assignment.${occupationId}.weekId`);
+        occupation.devId    .setQualifier(`Assignment.${occupationId}.devId`);
+        occupation.projId   .setQualifier(`Assignment.${occupationId}.projId`);
         occupation.amountPct.setQualifier(`Assignment.${occupationId}.amountPct`);
 
         occupation.projectName  = QualifiedAttribute(`Assignment.${occupationId}.projectName`);
@@ -45,6 +50,19 @@ const OccupationController = projController => {
         });
 
         occupations.add(occupation);
+
+        return occupationId;
+    };
+
+    /**
+     * @param {*} occupationPm, the presentation model for the occupation
+     * @param {Assignment} assignmentData
+     */
+    const updateValues = (occupationPm, assignmentData) => {
+        occupationPm.weekId   .getObs(VALUE).setValue(assignmentData.week);
+        occupationPm.devId    .getObs(VALUE).setValue(assignmentData.devId);
+        occupationPm.projId   .getObs(VALUE).setValue(assignmentData.projId);
+        occupationPm.amountPct.getObs(VALUE).setValue(assignmentData.amount);
     };
 
     const findById = assignmentId =>
@@ -61,6 +79,7 @@ const OccupationController = projController => {
         onAssignmentAdded:    occupations.onAdd,
         onAssignmentRemoved:  occupations.onDel,
         findAllByDevIdAndWeekId,
-        findById
+        findById,
+        updateValues
     }
 };

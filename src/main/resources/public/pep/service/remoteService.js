@@ -11,6 +11,7 @@ export { pepServices }
 const pepServices = (URL, imagePath) => {
 
     let broadcastHandler;
+    let assignmentHandler;
 
     const loadDevelopers = withDevelopers =>
         client(URL)
@@ -21,6 +22,8 @@ const pepServices = (URL, imagePath) => {
         })
         .catch( err => console.error(err));
 
+    const setAssignmentHandler = newHandler => assignmentHandler = newHandler;
+
     const startListening = (stompClient, channel) => {
         console.log("start listening", channel, stompClient);
         stompClient.connect({},  () => {
@@ -29,6 +32,10 @@ const pepServices = (URL, imagePath) => {
                 console.log("processing message: ",payload.body);
 
                 // take the payload and see whether we have to update any model
+                // for the moment we can assume that we only have to care about assignments
+                const assignment = JSON.parse(payload.body)
+                assignmentHandler && assignmentHandler(assignment);
+
             });
         });
     };
@@ -44,6 +51,7 @@ const pepServices = (URL, imagePath) => {
         loadDevelopers,
         startListening,
         setBroadcastHandler,
+        setAssignmentHandler,
         broadcast
     }
 };

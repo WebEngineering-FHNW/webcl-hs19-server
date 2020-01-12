@@ -43,10 +43,21 @@ const start = (services, appRootId, devArray) => {
     const staffingController        = StaffingController(developerController);
 
     const newAssignmentCommand = assignment => {
-        services.broadcast(assignment);
-        occupationController.addAssignment(assignment); // we add both but qualifiers keep them in sync
+        const id = occupationController.addAssignment(assignment); // we add both but qualifiers keep them in sync
         staffingController.addAssignment(assignment);
+        assignment.id = id;              // in case a new id has been assigned
+        services.broadcast(assignment);
     };
+
+    services.setAssignmentHandler(assignment => {
+        console.log("setting raw assignment", assignment);
+        const candidate = occupationController.findById(assignment.id);
+        if (candidate) { // update values
+            occupationController.updateValues(candidate, assignment);
+        } else {
+            newAssignmentCommand(assignment);
+        }
+    });
 
     const render = () => {
 
