@@ -26,7 +26,7 @@
 
     client.connect({},  () => {
         client.subscribe(channel, message =>  {
-            document.querySelector("#out").append(message.body + " ");
+            document.querySelector("#out").innerText = "received: " + message.body + " ";
         });
     });
 

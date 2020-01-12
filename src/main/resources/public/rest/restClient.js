@@ -9,8 +9,8 @@ const client = (url, method = 'GET', data = null) => {
         headers: {
             'Content-Type': 'application/json', // 'application/x-www-form-urlencoded'
         },
-        redirect: 'follow', // manual, *follow, error
-        referrer: 'no-referrer', // no-referrer, *client
+        redirect: 'follow',             // manual, *follow, error
+        referrer: 'no-referrer',        // no-referrer, *client
     };
     if (null != data) {
         request.body = JSON.stringify(data)

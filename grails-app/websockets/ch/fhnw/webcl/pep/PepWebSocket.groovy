@@ -5,10 +5,11 @@ import org.springframework.messaging.handler.annotation.SendTo
 
 class PepWebSocket {
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/hello")
-    String hello(String world) {
-        return "Hello, ${world}!"
+    @MessageMapping("/broadcast")
+    @SendTo("/queue/broadcast")
+    String broadcast(String command) {
+        println "broadcasting command: $command"
+        return command
     }
 
 }

@@ -4,8 +4,10 @@
 
 import './util/timesTest.js'
 import './util/stringsTest.js'
+import './observable/observableTest.js'
 import './church/churchTest.js'
 import './church/rockTest.js'
+import './dataflow/dataflowTest.js'
 
-import './pep/service/localServiceTest.js'
-import './pep/service/jsonToModelTest.js'
+import './presentationModel/presentationModelTest.js'
+import './person/personTest.js'
