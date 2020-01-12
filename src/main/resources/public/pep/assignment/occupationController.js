@@ -16,12 +16,13 @@ const OccupationController = projController => {
      * @param {Assignment} assignmentData
      * @return {number} the id that has been used to create the assignment
      * */
-    const addAssignment = assignmentData => {
+    const addAssignment = (assignmentData, broadcast) => {
         const occupation = Assignment();
         if (null != assignmentData.id ) {
             id = Math.max(Number(assignmentData.id), id) // make sure we use a higher number than ever seen
         }
         const occupationId = id;
+        assignmentData.id = id;
         id++;
 
         occupation.id.getObs(VALUE).setValue(occupationId);
@@ -34,7 +35,7 @@ const OccupationController = projController => {
             }
         });
 
-        occupation.id   .setQualifier(`Assignment.${occupationId}.id`);
+        occupation.id       .setQualifier(`Assignment.${occupationId}.id`);
         occupation.weekId   .setQualifier(`Assignment.${occupationId}.weekId`);
         occupation.devId    .setQualifier(`Assignment.${occupationId}.devId`);
         occupation.projId   .setQualifier(`Assignment.${occupationId}.projId`);
@@ -50,6 +51,23 @@ const OccupationController = projController => {
         });
 
         occupations.add(occupation);
+
+        // notify the world that we have a new assignment
+        broadcast(assignmentData);
+
+        const modelToJson = model => ({
+            id:     valueOf(model.id),
+            week:   valueOf(model.weekId),
+            devId:  valueOf(model.devId),
+            projId: valueOf(model.projId),
+            amount: valueOf(model.amountPct)
+        });
+        const tellTheWorld = value => broadcast(modelToJson(occupation));
+
+        occupation.weekId.getObs(VALUE)     .onChange(tellTheWorld); // selection of properties that's value changes the world needs to know about.
+        occupation.devId.getObs(VALUE)      .onChange(tellTheWorld);
+        occupation.projId.getObs(VALUE)     .onChange(tellTheWorld);
+        // occupation.amountPct.getObs(VALUE)  .onChange(tellTheWorld); // todo: react to mouse drag finished
 
         return occupationId;
     };

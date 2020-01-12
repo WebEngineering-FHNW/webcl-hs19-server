@@ -23,6 +23,7 @@ import {projectProjector} from "./project/projectProjector.js"
 
 import {NeedController} from "./need/needController.js";
 import {needProjector} from "./need/needProjector.js";
+import {VALUE, valueOf} from "../presentationModel/presentationModel.js";
 
 export { start } ;
 
@@ -43,10 +44,8 @@ const start = (services, appRootId, devArray) => {
     const staffingController        = StaffingController(developerController);
 
     const newAssignmentCommand = assignment => {
-        const id = occupationController.addAssignment(assignment); // we add both but qualifiers keep them in sync
+        occupationController.addAssignment(assignment, services.broadcast); // we add both but qualifiers keep them in sync
         staffingController.addAssignment(assignment);
-        assignment.id = id;              // in case a new id has been assigned
-        services.broadcast(assignment);
     };
 
     services.setAssignmentHandler(assignment => {
@@ -55,6 +54,7 @@ const start = (services, appRootId, devArray) => {
         if (candidate) { // update values
             occupationController.updateValues(candidate, assignment);
         } else {
+            console.log("no assignment with id", assignment.id, "creating new")
             newAssignmentCommand(assignment);
         }
     });
