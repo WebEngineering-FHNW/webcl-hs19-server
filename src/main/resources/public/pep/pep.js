@@ -52,9 +52,10 @@ const start = (services, appRootId, devArray) => {
         console.log("setting raw assignment", assignment);
         const candidate = occupationController.findById(assignment.id);
         if (candidate) { // update values
+            if(assignment.version <= valueOf(candidate.version)) { return; } // ignore obsolete updates
             occupationController.updateValues(candidate, assignment);
         } else {
-            console.log("no assignment with id", assignment.id, "creating new")
+            console.log("no assignment with id", assignment.id, "creating new");
             newAssignmentCommand(assignment);
         }
     });

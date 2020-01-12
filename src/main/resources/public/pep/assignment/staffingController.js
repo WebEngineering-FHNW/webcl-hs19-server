@@ -14,6 +14,9 @@ const StaffingController = devController => {
 
     /** @param {Assignment} assignmentData */
     const addAssignment = assignmentData => {
+
+        if (assignmentData.amount <= 0) { return; } // guard (do not resurrect deleted assignments)
+
         const staffing = Assignment();
         const staffId = id++;
         staffing.id         .getObs(VALUE).setValue(staffId);              // the id should never change
