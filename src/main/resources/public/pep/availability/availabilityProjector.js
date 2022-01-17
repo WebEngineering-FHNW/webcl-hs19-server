@@ -1,6 +1,6 @@
-import {dom}                from "../../util/dom.js";
+import {dom}                from "../../kolibri-dist/src/kolibri/util/dom.js";
 import {mouseDragStarter}   from "../mouseDrag.js";
-import {Attribute, valueOf, VALUE}     from "../../presentationModel/presentationModel.js";
+import {Attribute, valueOf, VALUE}     from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 import {availMinHeightQualifier, domIdForDevWeek, pctScale} from "../helper.js"
 
@@ -21,7 +21,7 @@ const availabilityProjector = (availabilityController, root) => {
         const domId  = domIdForDevWeek(valueOf(availability.devId), valueOf(availability.weekId) );
         const parent = root.querySelector("#"+domId);
 
-        const availElement = dom(`<div class="soll"> </div>`);
+        const [availElement] = dom(`<div class="soll"> </div>`);
 
         // bind mouse move  ->  avail value change
         availElement.onmousedown = mouseDragStarter(availability.availPct.getObs(VALUE));

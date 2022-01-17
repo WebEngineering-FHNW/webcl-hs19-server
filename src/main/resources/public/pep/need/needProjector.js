@@ -1,6 +1,6 @@
-import {dom}                from "../../util/dom.js";
+import {dom}                from "../../kolibri-dist/src/kolibri/util/dom.js";
 import {mouseDragStarter}   from "../mouseDrag.js";
-import {Attribute, valueOf, VALUE}     from "../../presentationModel/presentationModel.js";
+import {Attribute, valueOf, VALUE}     from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 import {needMinHeightQualifier, domIdForProjectWeek, pctScale} from "../helper.js"
 
@@ -20,7 +20,7 @@ const needProjector = (needController, root) => {
         const domId  = domIdForProjectWeek(valueOf(need.projectId), valueOf(need.weekId) );
         const parent = root.querySelector("#"+domId);
 
-        const needElement = dom(`<div class="soll"> </div>`);
+        const [needElement] = dom(`<div class="soll"> </div>`);
 
         // bind mouse move  ->  need value change
         needElement.onmousedown = mouseDragStarter(need.ftePct.getObs(VALUE));

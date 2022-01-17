@@ -1,5 +1,5 @@
 import {Week}         from "./weekModel.js";
-import {VALUE, LABEL} from "../../presentationModel/presentationModel.js";
+import {VALUE, LABEL} from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 export {WeekController}
 

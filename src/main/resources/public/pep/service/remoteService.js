@@ -1,4 +1,4 @@
-import {client}      from "../../rest/restClient.js";
+import {client}      from "../../kolibri-dist/src/kolibri/rest/restClient.js";
 import {toDeveloper} from "./jsonToModel.js";
 import                    "./serviceDoc.js"
 

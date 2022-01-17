@@ -1,7 +1,7 @@
 import { pepServices }  from "./localService.js"
-import { Suite }        from "../../test/test.js";
+import { TestSuite }    from "../../kolibri-dist/src/kolibri/util/test.js";
 
-const localServiceSuite = Suite("localService");
+const localServiceSuite = TestSuite("localService");
 
 localServiceSuite.add("setup", assert => {
 

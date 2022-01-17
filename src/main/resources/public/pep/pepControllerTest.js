@@ -1,8 +1,8 @@
 
 import { PepController } from "./pepController.js";
-import { Suite} from "../test/test.js";
+import { TestSuite} from "../kolibri-dist/src/kolibri/util/test.js";
 
-const pepControllerSuite = Suite("pepCtrl");
+const pepControllerSuite = TestSuite("pepCtrl");
 
 pepControllerSuite.add("zeroAssmt", assert => {
     const pepController = PepController();

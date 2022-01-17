@@ -1,6 +1,6 @@
-import {dom}                           from "../../util/dom.js";
+import {dom}                           from "../../kolibri-dist/src/kolibri/util/dom.js";
 import {mouseDragStarter, startDnD}    from "../mouseDrag.js";
-import {Attribute, valueOf, VALUE}     from "../../presentationModel/presentationModel.js";
+import {Attribute, valueOf, VALUE}     from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 import {staffMinHeightQualifier, domIdForProjectWeek, pctScale} from "../helper.js"
 
@@ -27,7 +27,7 @@ const staffingProjector = (staffingController, root) => {
 
         // create the view
 
-        const staffingElement = dom(
+        const [staffingElement] = dom(
             `<div class="assignment developer" draggable="true">                
                 <span class="developerName"></span>,
                 <span class="amount"></span>&nbsp;%               

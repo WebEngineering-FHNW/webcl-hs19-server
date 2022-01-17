@@ -1,5 +1,5 @@
-import {dom}                from "../../util/dom.js";
-import {VALUE, valueOf }    from "../../presentationModel/presentationModel.js";
+import {dom}                from "../../kolibri-dist/src/kolibri/util/dom.js";
+import {VALUE, valueOf }    from "../../kolibri-dist/src/kolibri/presentationModel.js";
 import {devWeekProjector}   from "./devWeekProjector.js";
 
 export { developerProjector }
@@ -10,7 +10,7 @@ const developerProjector = (developerController, weekController, assignmentContr
 
         // view
 
-        const devElement = dom(`<div class="topic developer" draggable="true">...</div>`);
+        const [devElement] = dom(`<div class="topic developer" draggable="true">...</div>`);
         root.appendChild(devElement); // later, we might prefer adding after the last preceding dev/week element if any
 
         // binding

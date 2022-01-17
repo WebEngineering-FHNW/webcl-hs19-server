@@ -1,5 +1,5 @@
-import {dom}                        from "../../util/dom.js";
-import {Attribute, valueOf, VALUE}  from "../../presentationModel/presentationModel.js";
+import {dom}                        from "../../kolibri-dist/src/kolibri/util/dom.js";
+import {Attribute, valueOf, VALUE}  from "../../kolibri-dist/src/kolibri/presentationModel.js";
 import {pctScale, staffMinHeightQualifier, needMinHeightQualifier, domIdForProjectWeek, showDroppable} from "../helper.js";
 
 export { projectWeekProjector }
@@ -11,7 +11,7 @@ const projectWeekProjector = (project, week, staffingController, newAssignmentCo
 
     // view: the holder element that contains both, the need and the assignments for a project this week
 
-    const weekElement = dom(`<div class="week project" id="${domIdForProjectWeek(projectId, weekId)}"></div>`);
+    const [weekElement] = dom(`<div class="week project" id="${domIdForProjectWeek(projectId, weekId)}"></div>`);
     root.appendChild(weekElement);
 
     // binding onto a derived value with the help of qualifiers (stable binding per project/week)

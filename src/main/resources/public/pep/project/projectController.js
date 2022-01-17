@@ -1,5 +1,5 @@
-import {ObservableList} from "../../observable/observable.js";
-import {VALUE, valueOf} from "../../presentationModel/presentationModel.js";
+import {ObservableList} from "../../kolibri-dist/src/kolibri/observable.js";
+import {VALUE, valueOf} from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 import {Project}        from "./projectModel.js";
 

@@ -1,5 +1,5 @@
-import {dom}                from "../../util/dom.js";
-import {VALUE}              from "../../presentationModel/presentationModel.js";
+import {dom}                from "../../kolibri-dist/src/kolibri/util/dom.js";
+import {VALUE}              from "../../kolibri-dist/src/kolibri/presentationModel.js";
 import {projectWeekProjector}   from "./projectWeekProjector.js";
 
 export { projectProjector }
@@ -10,7 +10,7 @@ const projectProjector = (projectController, weekController, staffingController,
 
         // view
 
-        const projectElement = (dom(`<div class="topic project" style="--pid-color:transparent">Project Name</div>`));
+        const [projectElement] = (dom(`<div class="topic project" style="--pid-color:transparent">Project Name</div>`));
 
         root.appendChild(projectElement);
 

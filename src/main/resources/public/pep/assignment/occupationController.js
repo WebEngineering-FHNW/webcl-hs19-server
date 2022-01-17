@@ -1,11 +1,10 @@
-import {ObservableList}                     from "../../observable/observable.js";
-import {QualifiedAttribute, VALUE, valueOf} from "../../presentationModel/presentationModel.js";
+import {ObservableList}                     from "../../kolibri-dist/src/kolibri/observable.js";
+import {QualifiedAttribute, VALUE, valueOf} from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
-import {Assignment}                         from "./assignmentModel.js";
+import {Assignment} from "./assignmentModel.js";
+import {clientId}   from "../../kolibri-dist/src/kolibri/version.js";
 
 export {OccupationController}
-
-let id = 0; // local singleton state to generate unique ids for view purposes
 
 const OccupationController = projController => {
 
@@ -21,12 +20,8 @@ const OccupationController = projController => {
         if (assignmentData.amount <= 0) { return; } // guard (do not resurrect deleted assignments)
 
         const occupation = Assignment();
-        if (null != assignmentData.id ) {
-            id = Math.max(Number(assignmentData.id), id) // make sure we use a higher number than ever seen
-        }
-        const occupationId = id;
-        assignmentData.id = id;
-        id++;
+
+        const occupationId = assignmentData.id;
 
         occupation.id.getObs(VALUE).setValue(occupationId);
         updateValues(occupation, assignmentData);

@@ -1,7 +1,7 @@
-import { Suite }        from "../../test/test.js";
+import { TestSuite }    from "../../kolibri-dist/src/kolibri/util/test.js";
 import { toDeveloper }  from "./jsonToModel.js";
 
-const jsonToModelSuite = Suite("jsonToModel");
+const jsonToModelSuite = TestSuite("jsonToModel");
 
 jsonToModelSuite.add("dev-normal", assert => {
     const jsonDev = {id:1, imageUrl:"img1.jpg", firstName: "first", lastName: "last"};

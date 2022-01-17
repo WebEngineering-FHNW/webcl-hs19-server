@@ -1,4 +1,4 @@
-import {presentationModelFromAttributeNames} from "../../presentationModel/presentationModel.js";
+import {presentationModelFromAttributeNames} from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 export { Project, ALL_PROJECT_ATTRIBUTE_NAMES }
 

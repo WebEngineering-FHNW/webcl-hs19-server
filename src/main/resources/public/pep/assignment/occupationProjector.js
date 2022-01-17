@@ -1,6 +1,6 @@
-import {dom}                           from "../../util/dom.js";
+import {dom}                           from "../../kolibri-dist/src/kolibri/util/dom.js";
 import {mouseDragStarter, startDnD}    from "../mouseDrag.js";
-import {Attribute, valueOf, VALUE}     from "../../presentationModel/presentationModel.js";
+import {Attribute, valueOf, VALUE}     from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 import {assignMinHeightQualifier, domIdForDevWeek, pctScale} from "../helper.js"
 
@@ -26,7 +26,7 @@ const occupationProjector = (occupationController, root) => {
         const initialParent = findParent( valueOf(occupation.devId), valueOf(occupation.weekId) );
 
         // create the view
-        const occupationElement = dom(
+        const [occupationElement] = dom(
             `<div class="assignment project" draggable="true">                
                 <span class="projectName"></span>,
                 <span class="amount"></span>&nbsp;%                

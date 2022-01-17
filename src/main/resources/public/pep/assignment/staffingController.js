@@ -1,11 +1,9 @@
-import {ObservableList}                     from "../../observable/observable.js";
-import {VALUE, valueOf,QualifiedAttribute } from "../../presentationModel/presentationModel.js";
+import {ObservableList}                     from "../../kolibri-dist/src/kolibri/observable.js";
+import {VALUE, valueOf,QualifiedAttribute } from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 import {Assignment}                         from "./assignmentModel.js";
 
 export {StaffingController}
-
-let id = 0; // local singleton state to generate unique ids for view purposes
 
 const StaffingController = devController => {
 
@@ -18,7 +16,7 @@ const StaffingController = devController => {
         if (assignmentData.amount <= 0) { return; } // guard (do not resurrect deleted assignments)
 
         const staffing = Assignment();
-        const staffId = id++;
+        const staffId = assignmentData.id;
         staffing.id         .getObs(VALUE).setValue(staffId);              // the id should never change
         staffing.weekId     .getObs(VALUE).setValue(assignmentData.week);
         staffing.devId      .getObs(VALUE).setValue(assignmentData.devId);

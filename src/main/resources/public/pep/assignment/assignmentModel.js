@@ -1,11 +1,12 @@
-import {presentationModelFromAttributeNames} from "../../presentationModel/presentationModel.js";
+import {presentationModelFromAttributeNames} from "../../kolibri-dist/src/kolibri/presentationModel.js";
+import {clientId}                            from "../../kolibri-dist/src/kolibri/version.js";
 
-export { Assignment, ALL_ASSIGNMENT_ATTRIBUTE_NAMES }
+export { Assignment, nextUniqueAssignmentId, ALL_ASSIGNMENT_ATTRIBUTE_NAMES }
 
 /**
  * @typedef  Assignment
  * @type     {object}
- * @property {!number} id      - id of the assignment; mandatory; set only once.
+ * @property {!String} id      - id of the assignment; mandatory; set only once.
  * @property {number}  version - a running version in order to properly update shared information with other clients
  * @property {!number} week    - id of the week; foreign key; mandatory; mutable.      // todo: -> weekId
  * @property {!number} devId   - id of the developer; foreign key, mandatory; mutable.
@@ -18,4 +19,7 @@ export { Assignment, ALL_ASSIGNMENT_ATTRIBUTE_NAMES }
 const ALL_ASSIGNMENT_ATTRIBUTE_NAMES = ['id', 'version', 'weekId','devId','projId','amountPct'];
 
 const Assignment = () => presentationModelFromAttributeNames(ALL_ASSIGNMENT_ATTRIBUTE_NAMES);
+
+let id = 0;
+const nextUniqueAssignmentId = () => clientId + "-" + (id++);
 

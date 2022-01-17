@@ -1,4 +1,4 @@
-import {presentationModelFromAttributeNames, LABEL} from "../../presentationModel/presentationModel.js";
+import {presentationModelFromAttributeNames, LABEL} from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 export { Week, labelObs, ALL_WEEK_ATTRIBUTE_NAMES }
 

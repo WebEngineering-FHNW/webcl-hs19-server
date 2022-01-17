@@ -1,6 +1,6 @@
-import {ObservableList} from "../../observable/observable.js";
+import {ObservableList} from "../../kolibri-dist/src/kolibri/observable.js";
 import {Developer}      from "./devModel.js";
-import {VALUE, valueOf} from "../../presentationModel/presentationModel.js";
+import {VALUE, valueOf} from "../../kolibri-dist/src/kolibri/presentationModel.js";
 
 export { DeveloperController }
 
