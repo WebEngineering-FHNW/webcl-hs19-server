@@ -43,7 +43,6 @@ const start = (services, appRootId, devArray) => {
     const staffingController        = StaffingController(developerController);
 
     const newAssignmentCommand = assignmentData => {
-        if (assignmentData.amount < 1) return; // sanity guard
         assignmentData.id = assignmentData.id ?? nextUniqueAssignmentId();
         occupationController.addAssignment(assignmentData, services.broadcast); // we add both but qualifiers keep them in sync
         staffingController.addAssignment(assignmentData);
