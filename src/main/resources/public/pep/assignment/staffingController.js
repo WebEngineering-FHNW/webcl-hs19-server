@@ -25,9 +25,9 @@ const StaffingController = devController => {
 
         // setting value to 0 removes the assignment and notifies remove-listener
         staffing.amountPct.getObs(VALUE).onChange( newAmount => {
-            if (0 === newAmount) {
-                staffings.del(staffing);
-            }
+            // if (0 === newAmount) {
+            //     staffings.del(staffing);
+            // }
         });
 
         staffing.id         .setQualifier(`Assignment.${staffId}.id`);

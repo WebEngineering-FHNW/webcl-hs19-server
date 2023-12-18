@@ -66,9 +66,9 @@ const OccupationController = projController => {
         // setting value to 0 removes the assignment and notifies remove-listener
         // make sure we do this before telling everybody
         occupation.amountPct.getObs(VALUE).onChange( newAmount => {
-            if (0 === newAmount) {
-                occupations.del(occupation);
-            }
+            // if (0 === newAmount) {
+            //     occupations.del(occupation);
+            // }
             tellTheWorld(newAmount);
         });
 

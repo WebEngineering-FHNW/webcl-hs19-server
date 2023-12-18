@@ -21,6 +21,11 @@
               --hightlight-overlay: rgba(255, 255, 0, 0.6);
               --drop-shadow:      0 .5em 0.5em lightgrey;
           }
+          #topicsOverWeeks * {
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              user-select: none;
+          }
           #topicsOverWeeks {
               display: grid;
               grid-template-columns: minmax(12em, 1.2fr) repeat(4, 1fr);
